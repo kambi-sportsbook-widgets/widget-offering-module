@@ -1,0 +1,6 @@
+{
+  "extends": ["prettier", "es2015"],
+  "parserOptions": {
+    "sourceType": "module"
+  }
+}
