@@ -1,5 +1,13 @@
 import { coreLibrary } from 'kambi-widget-core-library'
 
+console.log('Welcome in offering module')
+
+let data = {
+	networkProvider: 'networkProvider',
+	baseUrl: 'baseUrl',
+	version: 'v3',
+}
+
 export default class OfferingModule {
   static getGroupEvents(groupId) {
     let requesPath = '/event/group/' + groupId + '.json'
