@@ -1,7 +1,6 @@
-import { coreLibrary } from 'kambi-widget-core-library'
-
 console.log('Welcome in offering module')
 
+/*
 let data = {
 	networkProvider: 'networkProvider',
 	baseUrl: 'baseUrl',
@@ -205,3 +204,4 @@ export default class OfferingModule {
     }
   }
 }
+*/
