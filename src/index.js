@@ -1,4 +1,8 @@
-console.log('Welcome in offering module')
+export default class OfferingModule {
+	constructor() {
+		console.log('Welcome in offering module')
+	}
+}
 
 /*
 let data = {
