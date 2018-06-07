@@ -1,8 +1,7 @@
 // @flow
-import networkProvider from './networkProvider'
 import apiVersions from './apiVersions'
 import { PLACEHOLDER } from './constants'
-import { getConfigValues } from './index'
+import { getConfigValues, getNetworkProvider } from './index'
 
 // Types
 import type { GlomoEvent } from './types'
@@ -125,7 +124,8 @@ export function getData(
   url: string,
   parser: Function = jsonParser
 ): Promise<any> {
-  return networkProvider(url)
+  const networker = getNetworkProvider()
+  return networker(url)
     .then(checkStatus)
     .then(jsonParser)
     .catch(errorProvider)

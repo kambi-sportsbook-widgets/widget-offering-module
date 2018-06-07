@@ -3,19 +3,16 @@ import { getEvent } from './getEvent'
 import { getEventsByFilter } from './getEventsByFilter'
 
 // requires
-import networkProvider from './networkProvider'
+let networkProvider = require('./networkProvider')
 let configValues = require('./configValues')
 
 class setupOfferingModule {
-  configValues: Object
-  networkProvider: Function
-
-  static set networkProvider(provider: Function) {
-    this.networkProvider = provider
+  static setNetworkProvider(provider: Function) {
+    networkProvider = provider
   }
 
-  static get networkProvider() {
-    return this.networkProvider
+  static getNetworkProvider() {
+    return networkProvider.default
   }
 
   static setConfigValues(values: Object) {
@@ -23,11 +20,20 @@ class setupOfferingModule {
   }
 
   static getConfigValues() {
-    return configValues
+    return configValues.default
   }
 }
 
 const setConfigValues = setupOfferingModule.setConfigValues
 const getConfigValues = setupOfferingModule.getConfigValues
+const getNetworkProvider = setupOfferingModule.getNetworkProvider
+const setNetworkProvider = setupOfferingModule.setNetworkProvider
 
-export { setConfigValues, getConfigValues, getEvent, getEventsByFilter }
+export {
+  setConfigValues,
+  getConfigValues,
+  getNetworkProvider,
+  setNetworkProvider,
+  getEvent,
+  getEventsByFilter,
+}
