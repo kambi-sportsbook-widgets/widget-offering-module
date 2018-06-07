@@ -2,23 +2,36 @@
   "name": "kambi-widget-offering-module",
   "version": "1.0.1",
   "description": "Offering module extracted from core library",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "scripts": {
-    "build": "webpack",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "style": "prettier --write src/**/*.js",
-    "eslint": "eslint ./src/"
+    "start": "webpack --config webpack.config.js --watch",
+    "build": "npm test && webpack --config webpack.config.js",
+    "test": "jest",
+    "flow": "flow",
+    "flow:watch": "flow-watch",
+    "precommit": "npm test && lint-staged",
+    "prepublish": "npm run build"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-es2015": "^6.24.1",
-    "eslint": "^4.17.0",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-import": "^2.8.0",
-    "prettier": "1.10.2",
-    "webpack": "^3.11.0"
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-jest": "^23.0.1",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-flow": "^6.23.0",
+    "concurrently": "^3.5.1",
+    "flow-bin": "^0.73.0",
+    "flow-watch": "^1.1.3",
+    "jest": "^23.1.0",
+    "webpack": "^4.10.2"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,json,css}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "prettier": {
     "printWidth": 80,
@@ -26,9 +39,5 @@
     "singleQuote": true,
     "trailingComma": "es5",
     "tabWidth": 2
-  },
-  "dependencies": {
-    "eslint-config-es2015": "^1.1.0",
-    "kambi-widget-core-library": "^3.12.0"
   }
 }

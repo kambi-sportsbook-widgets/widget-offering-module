@@ -1,3 +1,21 @@
 {
-  "presets": [ "es2015"]
+   "presets": [
+      [
+         "env",
+         {
+            "debug": true,
+            "modules": false
+         }
+      ],
+      ["flow"]
+   ],
+   "env": {
+      "test": {
+         "presets": [
+            ["env"],
+            ["flow"]
+         ]
+      }
+   },
+   "retainLines": true
 }
