@@ -1,8 +1,8 @@
 // @flow
 import networkProvider from './networkProvider'
-import configValues from './configValues'
 import apiVersions from './apiVersions'
 import { PLACEHOLDER } from './constants'
+import { getConfigValues } from './index'
 
 // Types
 import type { GlomoEvent } from './types'
@@ -56,7 +56,7 @@ export function jsonParser(response: Object) {
  */
 export function urlParser(
   requestPath: string,
-  config: Object = configValues,
+  config: Object = getConfigValues(),
   overrideConfig: Object = {},
   version: string = apiVersions.v2018
 ): string {
@@ -84,7 +84,7 @@ export function urlParser(
   }
 
   // Merge with override config
-  requestParams = { ...requestParams, ...overrideConfig }
+  requestParams = Object.assign(requestParams, overrideConfig)
 
   const requestString = Object.keys(requestParams)
     .map(

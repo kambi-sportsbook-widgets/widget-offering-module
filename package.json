@@ -1,5 +1,5 @@
 {
-  "name": "kambi-widget-offering-module",
+  "name": "kambi-offering-api-module",
   "version": "2.0.0",
   "description": "Offering module extracted from core library",
   "main": "lib/index.js",
