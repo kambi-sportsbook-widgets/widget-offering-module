@@ -15,7 +15,7 @@ describe('Test suite for getEvent(eventId) offering module function', () => {
     return response().then(id => {
       eventId = id
       return getEvent(id).then(data => {
-        console.log(data)
+        return
       })
     })
   })
