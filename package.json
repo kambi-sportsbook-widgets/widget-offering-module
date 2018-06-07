@@ -1,6 +1,6 @@
 {
   "name": "kambi-widget-offering-module",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Offering module extracted from core library",
   "main": "lib/index.js",
   "scripts": {
