@@ -2,7 +2,6 @@
 import networkProvider from './networkProvider'
 import configValues from './configValues'
 import apiVersions from './apiVersions'
-import { PLACEHOLDER } from './constants'
 
 // Types
 import type { GlomoEvent } from './types'
@@ -70,8 +69,16 @@ export function urlParser(
     return ''
   }
 
-  let { apiBaseUrl } = config
-  let apiUrl = apiBaseUrl.replace(PLACEHOLDER, version)
+  if (config.apiBaseUrls == null) {
+    console.warn('====================================')
+    console.warn('Offering Module')
+    console.warn(
+      'The offering key for the "apiBaseUrls" has not been set. You should set this value to:'
+    )
+    console.warn('apiBaseUrls: { "v2018": "{url-as-documented-by-kambi}" }')
+    console.warn('====================================')
+    return ''
+  }
 
   let requestParams = {
     lang: config.locale,
@@ -95,7 +102,9 @@ export function urlParser(
     )
     .join('&')
 
-  return `${apiUrl}${config.offering}${requestPath}?${requestString}`
+  return `${config.apiBaseUrls[version]}${
+    config.offering
+  }${requestPath}?${requestString}`
 }
 
 /**
