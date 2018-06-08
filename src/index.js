@@ -16,7 +16,6 @@ class setupOfferingModule {
   }
 
   static setConfigValues(values: Object) {
-    console.log(values)
     configValues = values
   }
 
