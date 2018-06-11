@@ -6,9 +6,9 @@ import { getData, urlParser, adaptKambiOfferingApiData } from '../utils'
  *
  * @export
  * @param {(number | string)} eventId
- * @returns {Promise<any>}
+ * @returns {Promise<Event>}
  */
-export function getEvent(eventId: number | string): Promise<any> {
+export function getEvent(eventId: number | string): Promise<Event> {
   // check if type is number and parse as string
   if (typeof eventId === 'number') {
     eventId = eventId.toString()

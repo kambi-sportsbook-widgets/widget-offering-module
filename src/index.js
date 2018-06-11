@@ -11,7 +11,7 @@ export function setNetworkProvider(provider: Function) {
 }
 
 export function setConfigValues(values: Object) {
-  configValues = values
+  configValues = Object.assign({}, values)
 }
 
 export { getEvent, getEventsByFilter }

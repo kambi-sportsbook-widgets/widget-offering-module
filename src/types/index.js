@@ -51,7 +51,7 @@ export type BetOffer = $ReadOnly<{|
   description?: string,
 |}>
 
-export type Event = $ReadOnly<{|
+export type KambiEvent = $ReadOnly<{|
   id?: number,
   name?: string,
   englishName?: string,
@@ -88,7 +88,7 @@ export type Event = $ReadOnly<{|
   meetingId?: string,
 |}>
 
-export type GlomoEvent = $ReadOnly<{|
-  betOffers: Array<BetOffer>,
-  event: Event,
-|}>
+export type Event = KambiEvent &
+  $ReadOnly<{|
+    betOffers: BetOffer,
+  |}>

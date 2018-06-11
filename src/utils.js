@@ -4,7 +4,7 @@ import configValues from './configValues'
 import apiVersions from './apiVersions'
 
 // Types
-import type { GlomoEvent } from './types'
+import type { Event } from './types'
 
 /**
  * Adapting the kambi api response to be more usable in the widgets
@@ -13,11 +13,9 @@ import type { GlomoEvent } from './types'
  * @param {Object} data
  * @returns {GlomoEvent}
  */
-export function adaptKambiOfferingApiData(data: Object): GlomoEvent {
-  return {
-    event: data.events[0],
-    betOffers: data.betOffers,
-  }
+export function adaptKambiOfferingApiData(data: Object): Event {
+  data.event.betOffers = data.betOffers
+  return data.event
 }
 
 /**
@@ -91,7 +89,7 @@ export function urlParser(
   }
 
   // Merge with override config
-  requestParams = { ...requestParams, ...overrideConfig }
+  requestParams = Object.assign({ requestParams, overrideConfig })
 
   const requestString = Object.keys(requestParams)
     .map(
