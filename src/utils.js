@@ -3,20 +3,21 @@ import apiVersions from './apiVersions'
 import { getConfigValues, getNetworkProvider } from './index'
 
 // Types
-import type { GlomoEvent } from './types'
+import type { Event, KambiEvent, BetOffer } from './types'
 
 /**
  * Adapting the kambi api response to be more usable in the widgets
  *
  * @export
  * @param {Object} data
- * @returns {GlomoEvent}
+ * @returns {Object}
  */
-export function adaptKambiOfferingApiData(data: Object): GlomoEvent {
-  return {
-    event: data.events[0],
-    betOffers: data.betOffers,
-  }
+export function adaptKambiOfferingApiData(
+  betOffers: BetOffer,
+  event: Event
+): Event {
+  event.betOffers = betOffers
+  return event
 }
 
 /**

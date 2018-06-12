@@ -1,7 +1,6 @@
 const path = require('path')
 
-module.exports = {
-  mode: 'none',
+let config = {
   entry: './src/index.js',
   devtool: 'source-map',
   output: {
@@ -19,4 +18,15 @@ module.exports = {
       },
     ],
   },
+}
+
+module.exports = (env, argv) => {
+  if (argv.mode === 'production') {
+    config = Object.assign(config, {
+      optimizations: {
+        minimize: false,
+      },
+    })
+  }
+  return config
 }

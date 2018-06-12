@@ -16,7 +16,7 @@ class setupOfferingModule {
   }
 
   static setConfigValues(values: Object) {
-    configValues = values
+    configValues = Object.assign({}, values)
   }
 
   static getConfigValues() {

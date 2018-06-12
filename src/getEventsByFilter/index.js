@@ -6,5 +6,12 @@ export function getEventsByFilter(filter: string): Promise<any> {
 
   const url = urlParser(`/listView/${filter}`)
 
-  return getData(url)
+  return getData(url).then(data => {
+    const events = data.events.map(ev => {
+      return adaptKambiOfferingApiData(ev.betOffers, ev.event)
+    })
+
+    data.events = events
+    return data
+  })
 }

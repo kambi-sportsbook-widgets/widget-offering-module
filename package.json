@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "start": "webpack --config webpack.config.js --watch",
-    "build": "webpack --config webpack.config.js",
+    "build": "webpack --mode development --config webpack.config.js",
     "test": "jest",
     "flow": "flow",
     "flow:watch": "flow-watch",

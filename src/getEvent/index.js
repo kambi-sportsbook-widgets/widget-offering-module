@@ -18,6 +18,6 @@ export function getEvent(eventId: number | string): Promise<any> {
   const url = urlParser(`/betoffer/event/${eventId}.json`)
 
   return getData(url).then(data => {
-    return adaptKambiOfferingApiData(data)
+    return adaptKambiOfferingApiData(data.betOffers, data.events[0])
   })
 }
