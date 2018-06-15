@@ -156,6 +156,8 @@ export function XMLHttpRequestNetworkProvider(url: string): Promise<any> {
 
     xhr.open('GET', url, true)
 
+    xhr.timeout = 30000
+
     xhr.onload = function() {
       const response = {
         status: xhr.status,
