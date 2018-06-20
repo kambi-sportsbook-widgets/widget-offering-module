@@ -1,6 +1,6 @@
 {
   "name": "kambi-offering-api-module",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Offering module extracted from core library",
   "main": "lib/index.js",
   "scripts": {
