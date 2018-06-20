@@ -13,7 +13,7 @@ import type { Event, KambiEvent, BetOffer } from './types'
  * @returns {Object}
  */
 export function adaptKambiOfferingApiData(
-  betOffers: BetOffer,
+  betOffers: Array<BetOffer>,
   event: Event
 ): Event {
   event.betOffers = betOffers
