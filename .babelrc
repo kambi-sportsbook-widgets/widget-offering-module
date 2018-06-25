@@ -3,7 +3,6 @@
       [
          "env",
          {
-            "debug": true,
             "modules": false
          }
       ],
@@ -15,8 +14,7 @@
             [
                "env",
                {
-                  "debug": true,
-                  "modules": false
+                  "debug": true
                }
             ],
             ["flow"]

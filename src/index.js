@@ -1,39 +1,26 @@
 // @flow
 import { getEvent } from './getEvent'
 import { getEventsByFilter } from './getEventsByFilter'
+import { XMLHttpRequestNetworkProvider } from './utils'
+import defaultConfigValues from './configValues'
 
-// requires
-let networkProvider = require('./networkProvider')
-let configValues = require('./configValues')
+let networkProvider = XMLHttpRequestNetworkProvider
+let configValues = defaultConfigValues
 
-class setupOfferingModule {
-  static setNetworkProvider(provider: Function) {
-    networkProvider = provider
-  }
-
-  static getNetworkProvider() {
-    return networkProvider.default
-  }
-
-  static setConfigValues(values: Object) {
-    configValues = Object.assign({}, values)
-  }
-
-  static getConfigValues() {
-    return configValues
-  }
+export const setNetworkProvider = (provider: Function) => {
+  networkProvider = provider
 }
 
-const setConfigValues = setupOfferingModule.setConfigValues
-const getConfigValues = setupOfferingModule.getConfigValues
-const getNetworkProvider = setupOfferingModule.getNetworkProvider
-const setNetworkProvider = setupOfferingModule.setNetworkProvider
-
-export {
-  setConfigValues,
-  getConfigValues,
-  getNetworkProvider,
-  setNetworkProvider,
-  getEvent,
-  getEventsByFilter,
+export const getNetworkProvider = () => {
+  return networkProvider
 }
+
+export const setConfigValues = (values: Object) => {
+  configValues = Object.assign({}, defaultConfigValues, values)
+}
+
+export const getConfigValues = () => {
+  return configValues
+}
+
+export { getEvent, getEventsByFilter }

@@ -27,8 +27,10 @@ export function adaptKambiOfferingApiData(
  * @param {Object} error
  */
 export function errorProvider(error: Object) {
-  console.debug('Error fetching data')
-  console.trace(`${error.status}:: ${error.statusText}`)
+  if (process.env.NODE_ENV === 'development') {
+    console.debug('Error fetching data')
+    console.trace(`${error.status}:: ${error.statusText}`)
+  }
   throw error
 }
 
