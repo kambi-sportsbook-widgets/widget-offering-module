@@ -74,7 +74,7 @@ export type KambiEvent = $ReadOnly<{|
   liveBoCount?: number,
   sport?: Sport,
   tags?: string,
-  state?: 'NOT_STARTED' | 'STARTED' | 'FINISHED',
+  state: 'NOT_STARTED' | 'STARTED' | 'FINISHED',
   distance?: string,
   eventNumber?: number,
   nameDetails?: string,
@@ -116,5 +116,5 @@ export type KambiResponseType = $ReadOnly<{|
 
 export type Event = KambiEvent & {|
   betOffers: Array<BetOffer>,
-  liveData?: LiveData,
+  liveData: LiveData | null,
 |}

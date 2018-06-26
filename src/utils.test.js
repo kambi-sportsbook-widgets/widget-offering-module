@@ -5,7 +5,8 @@ describe('Testing the utils functions', () => {
     const event = adaptKambiOfferingApiData([], {})
     expect(event).toMatchSnapshot()
     expect(event).toHaveProperty('betOffers')
-    expect(event).not.toHaveProperty('liveData')
+    expect(event).toHaveProperty('liveData')
+    expect(event.liveData).toBe(null)
   })
 
   it('it adapts the kambi offering api data with liveData', () => {

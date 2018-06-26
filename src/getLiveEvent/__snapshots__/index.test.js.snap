@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test suite for getEvent(eventId) offering module function it tries to get a live event with an invalid event ID 1`] = `
+Object {
+  "body": "{\\"error\\":{\\"status\\":406,\\"message\\":\\"Not acceptable format\\"}}",
+  "status": 406,
+  "statusText": "Not Acceptable",
+}
+`;
+
+exports[`Test suite for getEvent(eventId) offering module function it tries to get a live event without passing an event id 1`] = `"An event ID is required to return event information from Kambi Offering API"`;

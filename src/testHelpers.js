@@ -1,10 +1,9 @@
 //@flow
 import { XMLHttpRequestNetworkProvider, checkStatus, jsonParser } from './utils'
 
-const URL =
-  'https://e1-api.aws.kambicdn.com/offering/v2018/kambi/betoffer/landing?lang=en_GB&market=UK'
-
 export function getEventIdFromKambi() {
+  const URL =
+    'https://e1-api.aws.kambicdn.com/offering/v2018/kambi/betoffer/landing?lang=en_GB&market=UK'
   return XMLHttpRequestNetworkProvider(URL)
     .then(checkStatus)
     .then(jsonParser)
@@ -15,6 +14,18 @@ export function getEventIdFromKambi() {
           return popular[0].events[0].event.id
         }
       }
+    })
+}
+
+export function getLiveEventIdFromKambi() {
+  const URL =
+    'https://e1-api.aws.kambicdn.com/offering/v2018/kambi/event/live/open'
+
+  return XMLHttpRequestNetworkProvider(URL)
+    .then(checkStatus)
+    .then(jsonParser)
+    .then(data => {
+      return data.liveEvents[0].event.id
     })
 }
 
@@ -58,4 +69,14 @@ export const expectedBetOfferProps = [
   'eventId',
   'tags',
   'outcomes',
+]
+
+export const expectedLiveEventProps = [
+  'eventId',
+  'matchClock',
+  'score',
+  'occurrences',
+  'liveFeedUpdates',
+  'tickers',
+  'liveStatistics',
 ]

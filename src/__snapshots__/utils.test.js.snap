@@ -10,6 +10,7 @@ Object {
 exports[`Testing the utils functions it adapts the kambi offering api data without liveData 1`] = `
 Object {
   "betOffers": Array [],
+  "liveData": null,
 }
 `;
 

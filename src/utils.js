@@ -15,15 +15,13 @@ import type { Event, KambiEvent, BetOffer, LiveData } from './types'
 export function adaptKambiOfferingApiData(
   betOffers: Array<BetOffer>,
   event: Event,
-  liveData: ?LiveData = null
+  liveData: LiveData | null = null
 ): Event {
   if (event == null || betOffers == null) {
     throw new Error('betOffers or event is undefined')
   }
   event.betOffers = betOffers
-  if (liveData != null) {
-    event.liveData = liveData
-  }
+  event.liveData = liveData
 
   return event
 }
