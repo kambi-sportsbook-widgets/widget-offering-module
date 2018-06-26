@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing the utils functions it adapts the kambi offering api data with liveData 1`] = `
+Object {
+  "betOffers": Array [],
+  "liveData": Object {},
+}
+`;
+
+exports[`Testing the utils functions it adapts the kambi offering api data without liveData 1`] = `
+Object {
+  "betOffers": Array [],
+}
+`;
+
+exports[`Testing the utils functions it fails to adapt to the kambi offering api data as betOffers and event are undefined 1`] = `"betOffers or event is undefined"`;

@@ -4,4 +4,11 @@
 .vscode
 npm-debug.log
 yarn.lock
+src/
+node_modules/
+CHANGELOG.md
+*.log
+npm-debug.log*
+.flowconfig
+.babelrc
 package-lock.json

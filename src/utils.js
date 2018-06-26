@@ -1,21 +1,31 @@
 // @flow
-import networkProvider from './networkProvider'
-import configValues from './configValues'
 import apiVersions from './apiVersions'
+import { getConfigValues, getNetworkProvider } from './index'
 
 // Types
-import type { Event } from './types'
+import type { Event, KambiEvent, BetOffer, LiveData } from './types'
 
 /**
  * Adapting the kambi api response to be more usable in the widgets
  *
  * @export
  * @param {Object} data
- * @returns {GlomoEvent}
+ * @returns {Object}
  */
-export function adaptKambiOfferingApiData(data: Object): Event {
-  data.event.betOffers = data.betOffers
-  return data.event
+export function adaptKambiOfferingApiData(
+  betOffers: Array<BetOffer>,
+  event: Event,
+  liveData: ?LiveData = null
+): Event {
+  if (event == null || betOffers == null) {
+    throw new Error('betOffers or event is undefined')
+  }
+  event.betOffers = betOffers
+  if (liveData != null) {
+    event.liveData = liveData
+  }
+
+  return event
 }
 
 /**
@@ -25,8 +35,10 @@ export function adaptKambiOfferingApiData(data: Object): Event {
  * @param {Object} error
  */
 export function errorProvider(error: Object) {
-  console.debug('Error fetching data')
-  console.trace(`${error.status}:: ${error.statusText}`)
+  if (process.env.NODE_ENV === 'development') {
+    console.debug('Error fetching data')
+    console.trace(`${error.status}:: ${error.statusText}`)
+  }
   throw error
 }
 
@@ -53,7 +65,7 @@ export function jsonParser(response: Object) {
  */
 export function urlParser(
   requestPath: string,
-  config: Object = configValues,
+  config: Object = getConfigValues(),
   overrideConfig: Object = {},
   version: string = apiVersions.v2018
 ): string {
@@ -89,7 +101,7 @@ export function urlParser(
   }
 
   // Merge with override config
-  requestParams = Object.assign({ requestParams, overrideConfig })
+  requestParams = Object.assign(requestParams, overrideConfig)
 
   const requestString = Object.keys(requestParams)
     .map(
@@ -132,7 +144,8 @@ export function getData(
   url: string,
   parser: Function = jsonParser
 ): Promise<any> {
-  return networkProvider(url)
+  const networker = getNetworkProvider()
+  return networker(url)
     .then(checkStatus)
     .then(jsonParser)
     .catch(errorProvider)
@@ -152,6 +165,8 @@ export function XMLHttpRequestNetworkProvider(url: string): Promise<any> {
     const xhr = new XMLHttpRequest()
 
     xhr.open('GET', url, true)
+
+    xhr.timeout = 30000
 
     xhr.onload = function() {
       const response = {

@@ -1,8 +1,7 @@
 // @flow
-
-export type GroupPath = {
-  id: number,
-  name: string,
-  englishName: string,
-  termKey: string,
-}
+export type GroupPath = $ReadOnly<{|
+  id?: number,
+  name?: string,
+  englishName?: string,
+  termKey?: string,
+|}>

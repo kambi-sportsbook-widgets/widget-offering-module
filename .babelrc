@@ -3,7 +3,6 @@
       [
          "env",
          {
-            "debug": true,
             "modules": false
          }
       ],
@@ -12,7 +11,12 @@
    "env": {
       "test": {
          "presets": [
-            ["env"],
+            [
+               "env",
+               {
+                  "debug": true
+               }
+            ],
             ["flow"]
          ]
       }
