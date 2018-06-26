@@ -2,6 +2,10 @@
 
 > The offering module is used as an interface for widgets and applications using the Kambi Offering API.
 
+## Kambi Offering API
+
+The documentation for the API is accessible on: https://e1-api.kambi.com/offering/v2018/docs/#/docs/intro/overview
+
 ## Development
 
 ```bash
@@ -24,4 +28,4 @@ npm run flow:watch
 
 ### VS Code
 
-Running the tests in the vscode debugger is setup based on the `/.vscode/launch.json` file. To run **all tests** press `F5` and you will be able to put breakpoints in your code.
+Running the tests in the vscode debugger is setup based on the `/.vscode/launch.json` file. To run **all tests** press `F5` and you will be able to put breakpoints in your code and inspect API responses etc.
