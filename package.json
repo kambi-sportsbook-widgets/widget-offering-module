@@ -37,5 +37,7 @@
     "trailingComma": "es5",
     "tabWidth": 2
   },
-  "dependencies": {}
+  "dependencies": {
+    "flow-bin": "^0.75.0"
+  }
 }

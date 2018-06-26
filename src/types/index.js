@@ -4,6 +4,14 @@ import type { Tags } from './tags'
 import type { Outcome } from './outcome'
 import type { OutcomeCriterion } from './outcomeCriterion'
 import type { GroupPath } from './groupPath'
+import type { MatchClock } from './matchClock'
+import type { Score } from './score'
+import type { Statistics } from './statistics'
+import type { VisualizationOccurrence } from './visualizationOccurrence'
+import type { MatchOccurrence } from './matchOccurrence'
+import type { LiveFeedUpdate } from './liveFeedUpdate'
+import type { Ticker } from './ticker'
+import type { LiveStatistics } from './liveStatistics'
 
 /**
  * BetOffer Type
@@ -88,9 +96,25 @@ export type KambiEvent = $ReadOnly<{|
   meetingId?: string,
 |}>
 
+export type LiveData = $ReadOnly<{|
+  eventId?: number,
+  matchClock?: MatchClock,
+  score?: Score,
+  statistics?: Statistics,
+  description?: string,
+  latestVisualization?: VisualizationOccurrence,
+  occurrences?: Array<MatchOccurrence>,
+  liveFeedUpdates?: Array<LiveFeedUpdate>,
+  tickers?: Array<Ticker>,
+  liveStatistics?: Array<LiveStatistics>,
+|}>
+
 export type KambiResponseType = $ReadOnly<{|
   betOffers: Array<BetOffer>,
   events: Array<KambiEvent>,
 |}>
 
-export type Event = KambiEvent & {| betOffers: Array<BetOffer> |}
+export type Event = KambiEvent & {|
+  betOffers: Array<BetOffer>,
+  liveData?: LiveData,
+|}

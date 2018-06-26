@@ -14,7 +14,11 @@ export function getEventsByFilter(filter: string): Promise<any> {
 
   return getData(url).then(data => {
     const events = data.events.map(ev => {
-      return adaptKambiOfferingApiData(ev.betOffers, ev.event)
+      return adaptKambiOfferingApiData(
+        ev.betOffers,
+        ev.event,
+        ev.liveData ? ev.liveData : null
+      )
     })
 
     data.events = events

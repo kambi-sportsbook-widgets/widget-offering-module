@@ -3,7 +3,7 @@ import apiVersions from './apiVersions'
 import { getConfigValues, getNetworkProvider } from './index'
 
 // Types
-import type { Event, KambiEvent, BetOffer } from './types'
+import type { Event, KambiEvent, BetOffer, LiveData } from './types'
 
 /**
  * Adapting the kambi api response to be more usable in the widgets
@@ -14,9 +14,17 @@ import type { Event, KambiEvent, BetOffer } from './types'
  */
 export function adaptKambiOfferingApiData(
   betOffers: Array<BetOffer>,
-  event: Event
+  event: Event,
+  liveData: ?LiveData = null
 ): Event {
+  if (event == null || betOffers == null) {
+    throw new Error('betOffers or event is undefined')
+  }
   event.betOffers = betOffers
+  if (liveData != null) {
+    event.liveData = liveData
+  }
+
   return event
 }
 
