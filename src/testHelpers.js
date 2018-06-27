@@ -17,6 +17,18 @@ export function getEventIdFromKambi() {
     })
 }
 
+export function getMultiEventIdFromKambi() {
+  const URL =
+    'https://e1-api.aws.kambicdn.com/offering/v2018/kambi/betoffer/group/1000461733'
+  return XMLHttpRequestNetworkProvider(URL)
+    .then(checkStatus)
+    .then(jsonParser)
+    .then(data => {
+      const eventIds = data.events.map(event => event.id)
+      return eventIds
+    })
+}
+
 export function getLiveEventIdFromKambi() {
   const URL =
     'https://e1-api.aws.kambicdn.com/offering/v2018/kambi/event/live/open'
