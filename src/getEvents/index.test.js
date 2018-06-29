@@ -5,11 +5,12 @@ import {
   getMultiEventIdFromKambi,
   expectedEventProps,
   expectedBetOfferProps,
+  expectedLiveEventProps,
 } from '../testHelpers'
 
 jest.setTimeout(30000) // need to increase default timeout for functions as we're making network requests
 
-describe('Test suite for getEvent(eventId) offering module function', () => {
+describe('Test suite for getEvents([eventIds], liveData) offering module function', () => {
   let response = null
   let eventIds = null
 
@@ -17,14 +18,39 @@ describe('Test suite for getEvent(eventId) offering module function', () => {
     response = getMultiEventIdFromKambi
   })
 
-  it(`it gets event ${eventIds} from kambi offering API`, () => {
+  it(`it gets events with livedata from kambi offering API`, () => {
     return response().then(ids => {
       eventIds = ids
-
+      let count = 0
       return getEvents(eventIds).then(data => {
         expect(data).toBeDefined()
         data.map(ev => {
           expectedEventProps.forEach(prop => expect(ev).toHaveProperty(prop))
+          if (ev.liveData !== null) {
+            expectedLiveEventProps.forEach(prop =>
+              expect(ev.liveData).toHaveProperty(prop)
+            )
+          }
+          ev.betOffers.forEach(bo => {
+            expect(bo.eventId).toEqual(ev.id)
+            expectedBetOfferProps.forEach(prop =>
+              expect(bo).toHaveProperty(prop)
+            )
+          })
+        })
+      })
+    })
+  })
+
+  it(`it gets events without livedata from kambi offering API`, () => {
+    return response().then(ids => {
+      eventIds = ids
+
+      return getEvents(eventIds, false).then(data => {
+        expect(data).toBeDefined()
+        data.map(ev => {
+          expectedEventProps.forEach(prop => expect(ev).toHaveProperty(prop))
+          expect(ev.liveData).toBeNull()
           ev.betOffers.forEach(bo => {
             expect(bo.eventId).toEqual(ev.id)
             expectedBetOfferProps.forEach(prop =>

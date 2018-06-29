@@ -24,8 +24,7 @@ export function getMultiEventIdFromKambi() {
     .then(checkStatus)
     .then(jsonParser)
     .then(data => {
-      const eventIds = data.events.map(event => event.id)
-      return eventIds
+      return data.events.map(event => event.id)
     })
 }
 
@@ -73,6 +72,7 @@ export const expectedEventProps = [
   'start',
   'state',
   'sport',
+  'liveData',
 ]
 
 export const expectedBetOfferProps = [
