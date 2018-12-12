@@ -1,5 +1,6 @@
 // @flow
 import { getEvent } from './getEvent'
+import { getEvents } from './getEvents'
 import { getEventsByFilter } from './getEventsByFilter'
 import { XMLHttpRequestNetworkProvider } from './utils'
 import defaultConfigValues from './configValues'
@@ -23,4 +24,4 @@ export const getConfigValues = () => {
   return configValues
 }
 
-export { getEvent, getEventsByFilter }
+export { getEvent, getEvents, getEventsByFilter }

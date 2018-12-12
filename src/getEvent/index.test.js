@@ -5,6 +5,7 @@ import {
   getEventIdFromKambi,
   expectedEventProps,
   expectedBetOfferProps,
+  expectedKambiError,
 } from '../testHelpers'
 
 jest.setTimeout(30000) // need to increase default timeout for functions as we're making network requests
@@ -35,7 +36,7 @@ describe('Test suite for getEvent(eventId) offering module function', () => {
 
   it('it tries to get an event with an invalid event ID', () => {
     return getEvent('123123').catch(err => {
-      expect(err).toMatchSnapshot()
+      expect(err).toMatchObject(expectedKambiError)
     })
   })
 

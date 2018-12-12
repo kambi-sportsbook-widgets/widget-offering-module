@@ -2,20 +2,33 @@
 import { XMLHttpRequestNetworkProvider, checkStatus, jsonParser } from './utils'
 
 const URL =
-  'https://e1-api.aws.kambicdn.com/offering/v2018/kambi/betoffer/landing?lang=en_GB&market=UK'
+  'https://eu-offering.kambicdn.org/offering/v2018/kambi/betoffer/landing?lang=en_GB&market=UK'
 
-export function getEventIdFromKambi() {
-  return XMLHttpRequestNetworkProvider(URL)
+const networking = () =>
+  XMLHttpRequestNetworkProvider(URL)
     .then(checkStatus)
     .then(jsonParser)
-    .then(data => {
-      const popular = data.result.filter(res => res.name === 'popular')
-      if (popular.length > 0) {
-        if (popular[0].events.length > 0) {
-          return popular[0].events[0].event.id
-        }
+
+export function getEventIdFromKambi() {
+  return networking().then(data => {
+    const popular = data.result.filter(res => res.name === 'popular')
+    if (popular.length > 0) {
+      if (popular[0].events.length > 0) {
+        return popular[0].events[0].event.id
       }
-    })
+    }
+  })
+}
+
+export function getEventIdsFromKambi() {
+  return networking().then(data => {
+    const popular = data.result.filter(res => res.name === 'popular')
+    if (popular.length > 0) {
+      if (popular[0].events.length > 0) {
+        return popular[0].events.map(({ event }) => event.id)
+      }
+    }
+  })
 }
 
 export const configValues = {
@@ -59,3 +72,9 @@ export const expectedBetOfferProps = [
   'tags',
   'outcomes',
 ]
+
+export const expectedKambiError = {
+  body: '{"error":{"message":"No bet offers found","status":404}}',
+  status: 404,
+  statusText: 'Not Found',
+}

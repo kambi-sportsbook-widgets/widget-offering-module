@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test suite for getEvents([eventId]) offering module function it tries to get an event without passing an event id 1`] = `"getEvent is not defined"`;
