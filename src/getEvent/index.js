@@ -1,5 +1,6 @@
 // @flow
-import { getData, urlParser, adaptKambiOfferingApiData } from '../utils'
+import { eventsParser } from '../parsers'
+import { getData, urlParser } from '../utils'
 
 /**
  * getEvent
@@ -24,6 +25,6 @@ export function getEvent(eventId: number | string): Promise<any> {
   const url = urlParser(`/betoffer/event/${eventId}.json`)
 
   return getData(url).then(data => {
-    return adaptKambiOfferingApiData(data.betOffers, data.events[0])
+    return eventsParser(data.betOffers, data.events[0])
   })
 }

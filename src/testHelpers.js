@@ -4,8 +4,8 @@ import { XMLHttpRequestNetworkProvider, checkStatus, jsonParser } from './utils'
 const URL =
   'https://eu-offering.kambicdn.org/offering/v2018/kambi/betoffer/landing?lang=en_GB&market=UK'
 
-const networking = () =>
-  XMLHttpRequestNetworkProvider(URL)
+const networking = (url: string = URL) =>
+  XMLHttpRequestNetworkProvider(url)
     .then(checkStatus)
     .then(jsonParser)
 

@@ -1,5 +1,6 @@
 //@flow
-import { getData, urlParser, adaptKambiOfferingApiData } from '../utils'
+import { eventsParser } from '../parsers'
+import { getData, urlParser } from '../utils'
 
 export function getEventsByFilter(filter: string): Promise<any> {
   if (filter == null) {
@@ -14,7 +15,7 @@ export function getEventsByFilter(filter: string): Promise<any> {
 
   return getData(url).then(data => {
     const events = data.events.map(ev => {
-      return adaptKambiOfferingApiData(
+      return eventsParser(
         ev.betOffers,
         ev.event,
         ev.liveData ? ev.liveData : null

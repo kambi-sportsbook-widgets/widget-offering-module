@@ -1,5 +1,6 @@
 // @flow
-import { getData, urlParser, adaptKambiOfferingApiData } from '../utils'
+import { eventsParser } from '../parsers'
+import { getData, urlParser } from '../utils'
 
 /**
  * getEvents
@@ -27,10 +28,7 @@ export function getEvents(eventIds: Array<number | string>): Promise<any> {
 
   return getData(url).then(data =>
     data.events.map(event =>
-      adaptKambiOfferingApiData(
-        data.betOffers.filter(bo => bo.eventId === event.id),
-        event
-      )
+      eventsParser(data.betOffers.filter(bo => bo.eventId === event.id), event)
     )
   )
 }
