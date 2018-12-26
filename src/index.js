@@ -3,6 +3,7 @@ import { getEvent } from './getEvent'
 import { getEvents } from './getEvents'
 import { getEventsByFilter } from './getEventsByFilter'
 import { getHighlights } from './getHighlights'
+import { getGroups } from './getGroups'
 import { XMLHttpRequestNetworkProvider } from './utils'
 import defaultConfigValues from './configValues'
 
@@ -25,4 +26,4 @@ export const getConfigValues = () => {
   return configValues
 }
 
-export { getEvent, getEvents, getEventsByFilter, getHighlights }
+export { getEvent, getEvents, getEventsByFilter, getHighlights, getGroups }

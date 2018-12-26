@@ -17,5 +17,9 @@ export const eventsParser = (
   return event
 }
 
-export const groupsParser = (data: { groups: Array<{}> }): Array<{}> =>
+export const highlightsParser = (data: { groups: Array<{}> }): Array<{}> =>
   data.groups
+
+export const groupsParser = (data: {
+  group: { groups: Array<{}> },
+}): Array<{}> => data.group.groups
